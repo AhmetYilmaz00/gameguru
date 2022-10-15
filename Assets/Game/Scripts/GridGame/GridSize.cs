@@ -2,17 +2,13 @@ using UnityEngine;
 
 namespace Game.Scripts.GridGame
 {
-    public class BackgroundSize : MonoBehaviour
+    public class GridSize : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
 
-        private void Start()
-        {
-        }
-
         public void ResizeSpriteToScreen()
         {
-            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             if (_spriteRenderer == null)
             {
                 return;
@@ -22,8 +18,6 @@ namespace Game.Scripts.GridGame
 
             var sprite = _spriteRenderer.sprite;
             var width = sprite.bounds.size.x;
-            var height = sprite.bounds.size.y;
-
             if (Camera.main != null)
             {
                 var worldScreenHeight = Camera.main.orthographicSize * 2;
