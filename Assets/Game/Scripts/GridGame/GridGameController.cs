@@ -9,7 +9,7 @@ namespace Game.Scripts.GridGame
         private RaycastHit2D _currentSquareHit;
         private Camera _camera;
         private Transform _cameraTransform;
-        private Vector2 _touchPoint;
+        private Vector3 _touchPoint;
 
         private void Start()
         {
@@ -20,7 +20,7 @@ namespace Game.Scripts.GridGame
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             SelectSquare();
         }
@@ -29,14 +29,21 @@ namespace Game.Scripts.GridGame
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                _touchPoint = _camera.ScreenToWorldPoint(Input.GetTouch(0).position);
-                _currentSquareHit = Physics2D.Raycast(_touchPoint, _cameraTransform.forward);
-                Debug.Log("kanka ekrana tıkladın");
+                var touch = Input.GetTouch(0);
+                _touchPoint = _camera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10f));
+                Debug.Log(_touchPoint);
+                _currentSquareHit = Physics2D.Raycast(_touchPoint, _camera.transform.forward);
+                Debug.DrawRay(_touchPoint, _camera.transform.forward, Color.green);
 
-                if (_currentSquareHit.collider.gameObject.CompareTag("Square"))
+
+                if (_currentSquareHit.collider == null)
                 {
-                    Debug.Log("kanka kareye tıkladın");
-                  //  _currentSquareHit.collider.gameObject.GetComponent<SquareFeatures>().xSprite.enabled = true;
+                    return;
+                }
+
+                if (_currentSquareHit.collider.CompareTag("Square"))
+                {
+                    _currentSquareHit.collider.GetComponent<GridPieceFeatures>().multiplictaion.color = Color.white;
                 }
             }
         }

@@ -6,6 +6,8 @@ namespace Game.Scripts.GridGame
     public class GridController : MonoBehaviour
     {
         [SerializeField] private int numberEdge;
+        [SerializeField] private GameObject gridPiece;
+
         private float _sideLength;
         private GridSize _gridSize;
         private Transform _gridTransform;
@@ -14,12 +16,17 @@ namespace Game.Scripts.GridGame
         private void Start()
         {
             _gridSize = GetComponent<GridSize>();
+            CorrectionGridSize();
+        }
+
+        private void CorrectionGridSize()
+        {
             _gridSize.ResizeSpriteToScreen();
             _gridTransform = _gridSize.transform;
             _sideLength = _gridTransform.localScale.x;
             _smallEdgeLength = _sideLength / numberEdge;
+            gridPiece.transform.localScale = Vector3.one * _smallEdgeLength;
         }
-
 
         public void CreateGrid()
         {
