@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81074319abc7f774aaa66a670df8cec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberEdge: 8
+  numberEdge: 7
   gridPiece: {fileID: 4008873406831852115, guid: 1fdd63caf32a55d48aca7b79f294b80a, type: 3}
 --- !u!114 &2014910950
 MonoBehaviour:
@@ -1142,6 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6068d3f9628ba045b28ab607aac2196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridController: {fileID: 0}
 --- !u!1 &2070956020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 4008873406831852115, guid: 1fdd63caf32a55d48aca7b79f294b80a, type: 3}
-  amountToPool: 5
+  amountToPool: 2
 --- !u!4 &2070956022
 Transform:
   m_ObjectHideFlags: 0
