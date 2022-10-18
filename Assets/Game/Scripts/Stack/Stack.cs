@@ -4,8 +4,9 @@ namespace Game.Scripts.Stack
 {
     public class Stack : MonoBehaviour
     {
-        [SerializeField] private float speed;
-        
+        public float speed;
+        public Transform stackPiece ;
+
 
         private void Update()
         {

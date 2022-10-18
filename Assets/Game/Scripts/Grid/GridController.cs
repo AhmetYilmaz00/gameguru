@@ -1,12 +1,11 @@
-using System;
+using Game.Scripts.GridGame;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.GridGame
+namespace Game.Scripts.Grid
 {
     public class GridController : MonoBehaviour
     {
-        [SerializeField] private GameObject gridPiece;
         [SerializeField] private TMP_InputField numberEdgeText;
 
         public GridPiece[,] allPiece;

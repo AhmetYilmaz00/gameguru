@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Scripts.GridGame
+namespace Game.Scripts.Grid
 {
     public class GridPieceSelect : MonoBehaviour
     {
@@ -23,12 +22,8 @@ namespace Game.Scripts.GridGame
             _gridController = GetComponent<GridController>();
         }
 
-        private void Update()
-        {
-            SelectSquare();
-        }
 
-        private void SelectSquare()
+        public void SelectSquare()
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {

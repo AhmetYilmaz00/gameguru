@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game.Scripts.GridGame
+namespace Game.Scripts.Grid
 {
     public class GridPiece : MonoBehaviour
     {
