@@ -2555,7 +2555,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTouch:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 962333399}
+        m_TargetAssemblyTypeName: Game.Scripts.Stack.StackController, Assembly-CSharp
+        m_MethodName: ControlStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &612609747
 Transform:
   m_ObjectHideFlags: 0
@@ -3670,6 +3682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 962333398}
   - component: {fileID: 962333399}
+  - component: {fileID: 962333400}
   m_Layer: 0
   m_Name: Stacks
   m_TagString: Untagged
@@ -3706,6 +3719,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6716754baab11ee44b97ecb954c21cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStack: {fileID: 4674860544148509844}
+  tolerance: 0.2
+--- !u!114 &962333400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962333397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a349846cee89479499e631540e850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 4674860543994883488, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
+  amountToPool: 10
 --- !u!1 &980142094
 GameObject:
   m_ObjectHideFlags: 0
@@ -10852,7 +10882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674860543994883492, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4674860543994883492, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10892,6 +10922,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
+--- !u!114 &4674860544148509844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674860543994883499, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
+  m_PrefabInstance: {fileID: 4674860544148509843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cffea8b9fb761143a522b9a35dcb5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5062883109654775313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5646447060418037118, guid: 8ebf841af362818409cf000d8f1a2345, type: 3}
