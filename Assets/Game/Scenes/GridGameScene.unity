@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 239383581}
   - component: {fileID: 239383580}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CreateGridButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Create Grid
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81074319abc7f774aaa66a670df8cec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberEdge: 7
   gridPiece: {fileID: 4008873406831852115, guid: 1fdd63caf32a55d48aca7b79f294b80a, type: 3}
+  numberEdge: 7
 --- !u!114 &2014910950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,7 +1142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6068d3f9628ba045b28ab607aac2196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridController: {fileID: 0}
 --- !u!1 &2070956020
 GameObject:
   m_ObjectHideFlags: 0

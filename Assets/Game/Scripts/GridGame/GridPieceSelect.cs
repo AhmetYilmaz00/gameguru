@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Scripts.GridGame
@@ -10,7 +11,7 @@ namespace Game.Scripts.GridGame
         private Camera _camera;
         private Vector3 _touchPoint;
         private GridController _gridController;
-        private int _nearGridNumber;
+        private HashSet<GridPiece> _deleteGridPieces = new();
 
         private void Start()
         {
@@ -45,6 +46,7 @@ namespace Game.Scripts.GridGame
                     gridPieceFeatures.multiplictaion.color = Color.white;
                     gridPieceFeatures.isActiveMultiplictaion = true;
                     var allPiece = _gridController.allPiece;
+
                     for (var y = 0; y < allPiece.GetLength(0); y++)
                     {
                         for (var x = 0; x < allPiece.GetLength(1); x++)
@@ -55,45 +57,50 @@ namespace Game.Scripts.GridGame
                             }
                         }
                     }
+
+                    GridsClear();
                 }
             }
         }
 
         private void NearGridsControl(ref GridPiece[,] allPiece, int y, int x)
         {
-            _nearGridNumber = 0;
-
+            _deleteGridPieces.Add(allPiece[y, x]);
             GridControl(ref allPiece, y - 1, x);
             GridControl(ref allPiece, y + 1, x);
             GridControl(ref allPiece, y, x - 1);
             GridControl(ref allPiece, y, x + 1);
-            if (_nearGridNumber >= 2)
-            {
-                Debug.Log("OLDUKANK");
-                GridClear(allPiece[y - 1, x]);
-                GridClear(allPiece[y + 1, x]);
-                GridClear(allPiece[y, x + 1]);
-                GridClear(allPiece[y, x - 1]);
-            }
         }
 
         private void GridControl(ref GridPiece[,] allPiece, int y, int x)
         {
-            if (y >= _gridController.numberEdge || x >= _gridController.numberEdge)
+            if (y >= _gridController.numberEdge || x >= _gridController.numberEdge || y < 0 || x < 0)
             {
                 return;
             }
 
-            if (allPiece[y, x].isActiveMultiplictaion)
+            if (allPiece[y, x].isActiveMultiplictaion && !_deleteGridPieces.Contains(allPiece[y, x]))
             {
-                _nearGridNumber++;
+                _deleteGridPieces.Add(allPiece[y, x]);
+                NearGridsControl(ref allPiece, y, x);
             }
         }
 
-        private void GridClear(GridPiece gridPiece)
+        private void GridsClear()
         {
-            gridPiece.multiplictaion.color = Color.clear;
-            gridPiece.isActiveMultiplictaion = false;
+            if (_deleteGridPieces.Count < 3)
+            {
+                _deleteGridPieces.Clear();
+                return;
+            }
+
+            foreach (var deleteGridPiece in _deleteGridPieces)
+            {
+                deleteGridPiece.multiplictaion.color = Color.clear;
+                deleteGridPiece.isActiveMultiplictaion = false;
+            }
+
+            _deleteGridPieces.Clear();
         }
     }
 }
