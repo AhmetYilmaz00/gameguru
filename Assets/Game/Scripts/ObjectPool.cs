@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Scripts.GridGame
+namespace Game.Scripts
 {
     public class ObjectPool : MonoBehaviour
     {
