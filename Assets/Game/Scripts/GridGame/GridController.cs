@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts.GridGame
@@ -6,6 +7,7 @@ namespace Game.Scripts.GridGame
     public class GridController : MonoBehaviour
     {
         [SerializeField] private GameObject gridPiece;
+        [SerializeField] private TMP_InputField numberEdgeText;
 
         public GridPiece[,] allPiece;
         public int numberEdge;
@@ -39,8 +41,19 @@ namespace Game.Scripts.GridGame
             }
         }
 
+        private void NumberEdgeText()
+        {
+            if (numberEdgeText.text == string.Empty)
+            {
+                return;
+            }
+
+            numberEdge = int.Parse(numberEdgeText.text);
+        }
+
         public void CreateGrid()
         {
+            NumberEdgeText();
             CorrectionGridSize();
             ControlGrid();
 
