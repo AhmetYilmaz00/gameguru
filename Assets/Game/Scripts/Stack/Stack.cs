@@ -1,25 +1,40 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Stack
 {
     public class Stack : MonoBehaviour
     {
+        public Vector3 endPos;
         public float speed;
         public Transform stackPiece;
+        public bool isRandom = true;
+        public bool isLeft;
         private bool _isStop;
 
-        private void Start()
+        public void Start()
         {
             GameManager.Instance.onTouch.AddListener(StopMove);
+            if (isRandom)
+            {
+                if (Random.Range(0, 2) == 0)
+                {
+                    isLeft = true;
+                }
+                else
+                {
+                    isLeft = false;
+                }
+            }
         }
+
 
         private void Update()
         {
             if (!_isStop)
             {
-                var pos = transform.position;
-                transform.position = new Vector3(Mathf.Sin(Time.time * speed), pos.y, pos.z);
+                transform.position = Vector3.Lerp(transform.position, endPos, speed * Time.deltaTime);
             }
         }
 
