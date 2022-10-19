@@ -2404,6 +2404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 604125042}
+  - component: {fileID: 604125043}
   m_Layer: 0
   m_Name: Chibi_Pos
   m_TagString: Untagged
@@ -2419,7 +2420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604125041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2427,6 +2428,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &604125043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604125041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb55e1fa64c362340a288634ac5aac3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionSpeed: 1
 --- !u!1 &604831775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,6 +2573,36 @@ MonoBehaviour:
       - m_Target: {fileID: 962333399}
         m_TargetAssemblyTypeName: Game.Scripts.Stack.StackController, Assembly-CSharp
         m_MethodName: ControlStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStepFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 604125043}
+        m_TargetAssemblyTypeName: Game.Scripts.Stack.Character, Assembly-CSharp
+        m_MethodName: GoToNextStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStartNextStep:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 962333399}
+        m_TargetAssemblyTypeName: Game.Scripts.Stack.StackController, Assembly-CSharp
+        m_MethodName: StartNextStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3534,7 +3578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889751898}
   m_LocalRotation: {x: 0.22996908, y: -0.2573659, z: 0.063204765, w: 0.9364199}
-  m_LocalPosition: {x: 5.5, y: 6.5, z: -7.4}
+  m_LocalPosition: {x: 5.5, y: 7, z: -7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3721,6 +3765,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStack: {fileID: 4674860544148509844}
   tolerance: 0.2
+  nextStepTransationTime: 1.5
+  steps:
+  - {fileID: 4674860544148509844}
 --- !u!114 &962333400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4612,7 +4659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114037320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5007, z: 0.29}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.778142, y: 0.9953593, z: 2.6732197}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8900,7 +8947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802348395}
   m_LocalRotation: {x: 0.22996908, y: -0.2573659, z: 0.063204765, w: 0.9364199}
-  m_LocalPosition: {x: 5.5, y: 6.5, z: -7.4}
+  m_LocalPosition: {x: 5.5, y: 7, z: -7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10886,11 +10933,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674860543994883492, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4674860543994883492, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.9597
+      value: 2.67322
       objectReference: {fileID: 0}
     - target: {fileID: 4674860543994883492, guid: e3a48b0e3c0022945aa353bcf3c97dcd, type: 3}
       propertyPath: m_LocalRotation.w

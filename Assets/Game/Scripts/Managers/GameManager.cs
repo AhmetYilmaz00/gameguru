@@ -6,6 +6,8 @@ namespace Game.Scripts
     public class GameManager : MonoSingleton<GameManager>
     {
         public UnityEvent onTouch;
+        public UnityEvent onStepFinish;
+        public UnityEvent onStartNextStep;
 
         private void Update()
         {
