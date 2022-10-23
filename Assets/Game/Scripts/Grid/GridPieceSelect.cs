@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,10 @@ namespace Game.Scripts.Grid
             _gridController = GetComponent<GridController>();
         }
 
+        private void Update()
+        {
+            SelectSquare();
+        }
 
         public void SelectSquare()
         {
