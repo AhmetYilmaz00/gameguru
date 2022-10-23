@@ -10,9 +10,9 @@ namespace Game.Scripts.Stack
         [SerializeField] private Stack currentStack;
         [SerializeField] private Stack beforeStack;
         [SerializeField] private Transform currentBroken;
+        [SerializeField] private Transform finishLine;
         [SerializeField] private float tolerance;
         [SerializeField] private float nextStepTransationTime;
-
         public List<Stack> steps = new();
 
         private Vector3 _initCurrentStackPosition;
@@ -22,18 +22,20 @@ namespace Game.Scripts.Stack
         private void Start()
         {
             _waitForSeconds = new WaitForSeconds(nextStepTransationTime);
+            FinishStepCalculate();
         }
 
         public void ControlStep()
         {
+          
             if (Mathf.Abs(currentStack.transform.position.x - beforeStack.transform.position.x) <= tolerance)
             {
                 StartCoroutine(SuccesStep());
                 return;
             }
-            
+
             if (currentStack.leftPivot.position.x > beforeStack.rightPivot.position.x ||
-                     currentStack.rightPivot.position.x < beforeStack.leftPivot.position.x)
+                currentStack.rightPivot.position.x < beforeStack.leftPivot.position.x)
             {
                 GameManager.Instance.onFallStart.Invoke();
             }
@@ -64,7 +66,7 @@ namespace Game.Scripts.Stack
         {
             if (currentStack.leftPivot.position.x < beforeStack.leftPivot.position.x)
             {
-                var brokenPiece = currentStack.rightPivot.position.x - beforeStack.rightPivot.position.x;
+                var brokenPiece = Mathf.Abs(currentStack.rightPivot.position.x - beforeStack.rightPivot.position.x);
 
 
                 currentBroken.transform.position += Vector3.right *
@@ -154,6 +156,12 @@ namespace Game.Scripts.Stack
                     Vector3.right * 5 + Vector3.forward * (steps.Count - 1) * stackObj.transform.lossyScale.z;
                 stack.endPos = Vector3.left * 5 + Vector3.forward * (steps.Count - 1) * stackObj.transform.lossyScale.z;
             }
+        }
+
+        private void FinishStepCalculate()
+        {
+            finishLine.position += Vector3.forward * ((GameManager.Instance.stepCount - 1) *
+                                                      beforeStack.transform.lossyScale.z);
         }
     }
 }

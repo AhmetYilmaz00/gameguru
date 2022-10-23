@@ -9,6 +9,7 @@ namespace Game.Scripts.Stack
     {
         [SerializeField] private float transitionSpeed;
         [SerializeField] private CinemachineVirtualCamera virtualCamera;
+        [SerializeField] private Animator animator;
 
         private bool _isRun;
         private bool _isFall;
@@ -16,7 +17,6 @@ namespace Game.Scripts.Stack
 
         private void Update()
         {
-            Debug.Log("_isRun" + _isRun);
             if (_isRun)
             {
                 var nextStep = StackController.Instance.steps[StackController.Instance.steps.Count - 1].transform;
@@ -30,6 +30,15 @@ namespace Game.Scripts.Stack
                 if (Mathf.Abs(transform.position.z - nextStep.position.z) < 0.2f)
                 {
                     _isRun = false;
+                    if (StackController.Instance.steps.Count == GameManager.Instance.stepCount)
+                    {
+                        Debug.Log("SUCESSLEVEL");
+                        GameManager.Instance.onSuccesLevel.Invoke();
+
+                        return;
+                    }
+
+                    GameManager.Instance.isReadyTouch = true;
                     GameManager.Instance.onStartNextStep.Invoke();
                 }
             }
@@ -46,7 +55,6 @@ namespace Game.Scripts.Stack
                 {
                     _isFall = false;
                     virtualCamera.Follow = null;
-                    virtualCamera.LookAt = null;
                 }
             }
         }
@@ -60,6 +68,12 @@ namespace Game.Scripts.Stack
         {
             _isFall = true;
             GetComponent<Rigidbody>().isKinematic = false;
+            GameManager.Instance.onFailLevel.Invoke();
+        }
+
+        public void PlayCharacterSuccesAnimation()
+        {
+            animator.SetBool("IsRunning", false);
         }
     }
 }

@@ -13,11 +13,18 @@ namespace Game.Scripts
         public UnityEvent onFailLevel;
         public UnityEvent onSuccesLevel;
         public bool firstTouch = true;
+        public int stepCount = 7;
+        public bool isReadyTouch;
+
         private void Update()
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                onTouch.Invoke();
+                if (isReadyTouch)
+                {
+                    onTouch.Invoke();
+                    isReadyTouch = false;
+                }
             }
         }
     }
