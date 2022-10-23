@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Scripts.Stack
 {
@@ -30,8 +29,10 @@ namespace Game.Scripts.Stack
             if (Mathf.Abs(currentStack.transform.position.x - beforeStack.transform.position.x) <= tolerance)
             {
                 StartCoroutine(SuccesStep());
+                return;
             }
-            else if (currentStack.leftPivot.position.x > beforeStack.rightPivot.position.x ||
+            
+            if (currentStack.leftPivot.position.x > beforeStack.rightPivot.position.x ||
                      currentStack.rightPivot.position.x < beforeStack.leftPivot.position.x)
             {
                 GameManager.Instance.onFallStart.Invoke();
@@ -40,10 +41,21 @@ namespace Game.Scripts.Stack
             {
                 StartCoroutine(StackStopAndCut());
             }
+
+            SoundManager.Instance.PitchResetAudio();
         }
 
         private IEnumerator SuccesStep()
         {
+            if (!GameManager.Instance.firstTouch)
+            {
+                GameManager.Instance.onStepGoodFinish.Invoke();
+            }
+            else
+            {
+                GameManager.Instance.firstTouch = false;
+            }
+
             yield return _waitForSeconds;
             GameManager.Instance.onStepFinish.Invoke();
         }
