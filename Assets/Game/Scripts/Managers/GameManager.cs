@@ -8,6 +8,9 @@ namespace Game.Scripts
         public UnityEvent onTouch;
         public UnityEvent onStepFinish;
         public UnityEvent onStartNextStep;
+        public UnityEvent onFallStart;
+        public UnityEvent onFailLevel;
+        public UnityEvent onSuccesLevel;
 
         private void Update()
         {

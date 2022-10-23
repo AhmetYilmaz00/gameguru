@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+namespace Game.Scripts.Managers
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SoundManager : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private float pitchAmount;
+        private AudioSource _audioSource;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+
+        public void PitchAndPlayAudio()
+        {
+            _audioSource.Play();
+            _audioSource.pitch += pitchAmount;
+        }
     }
 }

@@ -8,7 +8,9 @@ namespace Game.Scripts.Stack
     {
         public Vector3 endPos;
         public float speed;
-        public Transform stackPiece;
+        public Transform leftPivot;
+        public Transform rightPivot;
+
         public bool isRandom = true;
         private bool _isStop;
         public Direction direction;
