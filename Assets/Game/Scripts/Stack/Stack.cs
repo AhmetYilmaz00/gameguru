@@ -10,8 +10,21 @@ namespace Game.Scripts.Stack
         public float speed;
         public Transform stackPiece;
         public bool isRandom = true;
-        public bool isLeft;
         private bool _isStop;
+        public Direction direction;
+        public State state;
+
+        public enum State
+        {
+            FirstHalfRoad,
+            SecondHalfRoad
+        }
+
+        public enum Direction
+        {
+            Left,
+            Right
+        }
 
         public void Start()
         {
@@ -20,11 +33,11 @@ namespace Game.Scripts.Stack
             {
                 if (Random.Range(0, 2) == 0)
                 {
-                    isLeft = true;
+                    direction = Direction.Left;
                 }
                 else
                 {
-                    isLeft = false;
+                    direction = Direction.Right;
                 }
             }
         }
