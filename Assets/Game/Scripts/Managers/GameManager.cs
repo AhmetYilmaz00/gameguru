@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,9 @@ namespace Game.Scripts
         public bool firstTouch = true;
         public int stepCount = 7;
         public bool isReadyTouch;
+        public GameObject gameFinishUI;
+        public GameObject nextLevelButton;
+        public TMP_Text levelFinishTitleText;
 
         private void Update()
         {
@@ -26,6 +30,36 @@ namespace Game.Scripts
                     isReadyTouch = false;
                 }
             }
+        }
+
+        private void FinishLevel()
+        {
+            gameFinishUI.SetActive(true);
+        }
+
+        public void SuccessLevel()
+        {
+            nextLevelButton.SetActive(true);
+            levelFinishTitleText.text = "YOU WINNER";
+            FinishLevel();
+        }
+
+        public void FailedLevel()
+        {
+            nextLevelButton.SetActive(false);
+            levelFinishTitleText.text = "YOU LOST";
+
+            FinishLevel();
+        }
+
+        public void RestartGameButtonClick()
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        public void NextLevelButtonClick()
+        {
+            RestartGameButtonClick();
         }
     }
 }
